@@ -2,9 +2,17 @@ var Training = require("../model/Training");
 
 module.exports = function() {
   Training.find(function(err, trainings) {
-    if (err || (trainings && trainings.length > 0)) {
-      console.log("Test data already present");
-      return;
+    if (trainings && trainings.length > 0) {
+      console.log("Clean up test data");
+
+      for (var i in trainings) {
+        var training = trainings[i];
+        training.remove(function(removeError) {
+          if (removeError) {
+            console.error(removeError);
+          }
+        });
+      }
     }
 
     var trainings = [
