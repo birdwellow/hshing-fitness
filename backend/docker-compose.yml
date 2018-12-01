@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  fitness-backend:
+    depends_on:
+      - fitness-db
+    restart: always
+    ports:
+      - 3000:3000
+    build: .
+    environment:
+      - MONGO_HOST=fitness-db
+
+  fitness-db:
+    image: mongo
+    ports:
+      - 27017:27017
