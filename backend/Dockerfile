@@ -1,4 +1,5 @@
-FROM node:carbon
+FROM node:8-alpine
+#FROM node:carbon
 
 # Create app directory
 WORKDIR /usr/src/app
